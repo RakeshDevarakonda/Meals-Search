@@ -8,7 +8,6 @@ window.addEventListener("pageshow", function (event) {
   }
 });
 
-
 let imageData = JSON.parse(localStorage.getItem("favoritedata")) || [];
 
 const divElement = document.querySelector("#results-container");
@@ -51,7 +50,6 @@ renderFavourte(imageData);
 
 async function fetchData(url) {
   try {
-    console.log(url);
     const response = await fetch(url);
 
     const data = await response.json();
@@ -210,12 +208,6 @@ function addtofavorites(element) {
 
 // const hearts2 = document.querySelectorAll(".heartss2");
 
-// hearts2.forEach((heart) => {
-//   heart.addEventListener("click", (e) => {
-//     heart2(heart, e);
-//   });
-// });
-
 function heart2(heart, e) {
   const closestElement = e.target.closest(".modalelement");
 
@@ -235,6 +227,11 @@ function heart2(heart, e) {
     let imageData = JSON.parse(localStorage.getItem("favoritedata")) || [];
 
     renderFavourte(imageData);
+
+    var urlname = JSON.parse(localStorage.getItem("search-value")) || " ";
+
+    fetchData(
+      `https://www.themealdb.com/api/json/v1/1/search.php?s=${urlname}`
+    );
   }
 }
-
