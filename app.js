@@ -228,3 +228,9 @@ function heart2(heart, e) {
     fetchData(urlname);
   }
 }
+
+window.addEventListener('pageshow', function(event) {
+  if (event.persisted) {
+    this.location.reload()
+  }
+});
