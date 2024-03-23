@@ -2,7 +2,7 @@ let imageData = JSON.parse(localStorage.getItem("favoritedata")) || [];
 
 const divElement = document.querySelector("#results-container");
 const modalElement = document.querySelector(".modal-body");
-var urlname = JSON.parse(localStorage.getItem("search-value")) || "";
+var urlname = JSON.parse(localStorage.getItem("search-value")) || " ";
 
 
 function renderFavourte(imageData) {
