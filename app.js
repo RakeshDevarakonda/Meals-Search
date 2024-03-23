@@ -4,7 +4,6 @@ const divElement = document.querySelector("#results-container");
 const modalElement = document.querySelector(".modal-body");
 var urlname = JSON.parse(localStorage.getItem("search-value")) || " ";
 
-
 function renderFavourte(imageData) {
   modalElement.innerHTML = "";
   imageData.forEach((e) => {
@@ -41,7 +40,6 @@ renderFavourte(imageData);
 
 async function fetchData(url) {
   try {
-
     console.log(url);
     const response = await fetch(url);
 
@@ -55,12 +53,19 @@ async function fetchData(url) {
   }
 }
 
-if (urlname.length > 0) {
+if (urlname.length > 0 && urlname != " ") {
   document.querySelector("#search-input").value = urlname;
   fetchData(`https://www.themealdb.com/api/json/v1/1/search.php?s=${urlname}`);
-}
+} 
+
 document.querySelector("#search-input").addEventListener("input", (e) => {
-  if (e.target.value != "") {
+
+
+  if (e.target.value == "") {
+    localStorage.setItem("search-value", JSON.stringify(e.target.value));
+  }
+  
+  if (e.target.value.length > 0 && e.target.value != " ") {
     localStorage.setItem("search-value", JSON.stringify(e.target.value));
     console.log(e.target.value);
     fetchData(
