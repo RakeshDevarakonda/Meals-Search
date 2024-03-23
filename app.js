@@ -1,3 +1,14 @@
+window.addEventListener("pageshow", function (event) {
+  if (
+    event.persisted ||
+    (window.performance && window.performance.navigation.type === 2)
+  ) {
+    window.location.reload();
+  } else {
+  }
+});
+
+
 let imageData = JSON.parse(localStorage.getItem("favoritedata")) || [];
 
 const divElement = document.querySelector("#results-container");
@@ -56,15 +67,13 @@ async function fetchData(url) {
 if (urlname.length > 0 && urlname != " ") {
   document.querySelector("#search-input").value = urlname;
   fetchData(`https://www.themealdb.com/api/json/v1/1/search.php?s=${urlname}`);
-} 
+}
 
 document.querySelector("#search-input").addEventListener("input", (e) => {
-
-
   if (e.target.value == "") {
     localStorage.setItem("search-value", JSON.stringify(e.target.value));
   }
-  
+
   if (e.target.value.length > 0 && e.target.value != " ") {
     localStorage.setItem("search-value", JSON.stringify(e.target.value));
     console.log(e.target.value);
@@ -229,12 +238,3 @@ function heart2(heart, e) {
   }
 }
 
-window.addEventListener("pageshow", function (event) {
-  if (
-    event.persisted ||
-    (window.performance && window.performance.navigation.type === 2)
-  ) {
-    window.location.reload();
-  } else {
-  }
-});
