@@ -4,6 +4,7 @@ const divElement = document.querySelector("#results-container");
 const modalElement = document.querySelector(".modal-body");
 var urlname = JSON.parse(localStorage.getItem("search-value")) || "";
 
+
 function renderFavourte(imageData) {
   modalElement.innerHTML = "";
   imageData.forEach((e) => {
@@ -40,7 +41,6 @@ renderFavourte(imageData);
 
 async function fetchData(url) {
   try {
-    urlname = url;
 
     console.log(url);
     const response = await fetch(url);
