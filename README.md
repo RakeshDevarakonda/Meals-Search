@@ -1,7 +1,12 @@
 Meal Search App
+
+
+
 Welcome to the Meal Search App! This web application allows you to search for meals using an API, view meal details, add meals to favorites, remove meals from favorites, and view ingredients and cooking instructions.
 
-Features
+<h1>Features</h1>
+
+
 1. Search Meals
 Use the search bar to search for meals by name or keyword.
 Browse through a variety of meals based on your search query.
