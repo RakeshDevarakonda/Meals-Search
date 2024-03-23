@@ -89,7 +89,7 @@ function Mealsdata(apidata) {
       <i class="fa-regular fa-heart heartss"></i>
       </div>
       <div>
-          <img src="${element.strMealThumb}" alt="">
+          <img loading="lazy" src="${element.strMealThumb}" alt="">
       </div>
       <div class="w-100">
           <h5 class=" text-center text-wrap m-2" >${element.strMeal}</h5>
