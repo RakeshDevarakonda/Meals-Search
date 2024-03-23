@@ -1,0 +1,132 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: rgb(36, 34, 34);
+  font-family: Montserrat !important;
+
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+}
+
+.search-container {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+input[type="text"] {
+  width: 70%;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#results-container {
+  padding: 20px;
+  background-color: rgb(36, 34, 34);
+
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+#results-container img {
+  height: 200px;
+  width: 200px;
+  margin: 10px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.modalelement {
+  width: 45%;
+  background-color: #e6e6e6;
+  padding: 5px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.modalelement img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+i {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.everyelement {
+  width: 20%;
+  background-color: #e6e6e6;
+  padding: 20px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+
+.ok {
+  font-size: 30px;
+}
+
+.modal-header,
+.modal-footer {
+  border: 0 !important;
+}
+
+.modalimage {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  border-radius: 0px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.modal-body .everyelement {
+  width: 50%;
+}
+
+.fa-solid {
+  color: red !important;
+}
