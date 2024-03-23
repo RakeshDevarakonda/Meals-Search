@@ -1,3 +1,5 @@
+Live Demo :- https://rakeshdevarakonda.github.io/Meals-Search/
+
 <h2>Meal Search App</h2>
 
 Welcome to the Meal Search App! This web application allows you to search for meals using an API, view meal details, add meals to favorites, remove meals from favorites, and view ingredients and cooking instructions.
