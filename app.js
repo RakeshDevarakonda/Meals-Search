@@ -1,9 +1,9 @@
 let imageData = JSON.parse(localStorage.getItem("favoritedata")) || [];
 
-var urlname;
-
 const divElement = document.querySelector("#results-container");
 const modalElement = document.querySelector(".modal-body");
+var urlname = JSON.parse(localStorage.getItem("search-value"));
+
 function renderFavourte(imageData) {
   modalElement.innerHTML = "";
   imageData.forEach((e) => {
@@ -55,23 +55,20 @@ async function fetchData(url) {
   }
 }
 
-document.querySelector("#search-input").value = " ";
-
-if (document.querySelector("#search-input").value.trim().length > 0) {
-  fetchData(
-    `https://www.themealdb.com/api/json/v1/1/search.php?s=${
-      document.querySelector("#search-input").value
-    }`
-  );
+if (urlname.length > 0) {
+  document.querySelector("#search-input").value = urlname;
+  fetchData(`https://www.themealdb.com/api/json/v1/1/search.php?s=${urlname}`);
 }
-
 document.querySelector("#search-input").addEventListener("input", (e) => {
   if (e.target.value != "") {
+    localStorage.setItem("search-value", JSON.stringify(e.target.value));
+    console.log(e.target.value);
     fetchData(
       `https://www.themealdb.com/api/json/v1/1/search.php?s=${e.target.value}`
     );
   } else {
-    divElement.innerHTML = "";
+    console.log("object");
+    divElement.innerHTML = " ";
   }
 });
 
@@ -224,13 +221,15 @@ function heart2(heart, e) {
     let imageData = JSON.parse(localStorage.getItem("favoritedata")) || [];
 
     renderFavourte(imageData);
-
-    fetchData(urlname);
   }
 }
 
-window.addEventListener('pageshow', function(event) {
-  if (event.persisted) {
-    this.location.reload()
+window.addEventListener("pageshow", function (event) {
+  if (
+    event.persisted ||
+    (window.performance && window.performance.navigation.type === 2)
+  ) {
+    window.location.reload();
+  } else {
   }
 });
