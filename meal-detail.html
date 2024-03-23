@@ -13,8 +13,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Noto+Sans+JP:wght@300&family=Plus+Jakarta+Sans:wght@800&family=Poppins:wght@300&family=Rubik+Doodle+Triangles&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
     <style>
         body {
+
+
             background-color: black;
             font-family: Montserrat !important;
 
@@ -25,8 +28,10 @@
         }
 
         h5 {
-            color: red;
+            color: white;
+            margin-left: 10px;
         }
+
 
         span {
             color: white;
@@ -40,6 +45,32 @@
             color: white;
             margin: 30px 0px;
         }
+
+        .modalclickbutton {
+            color: white;
+        }
+
+        i {
+            font-size: 30px;
+        }
+
+        .modal-title {
+            color: black;
+        }
+
+        h4 {
+            color: red;
+
+        }
+
+        .modalcolorh4 {
+            color: rgb(0, 0, 0) !important;
+        }
+
+
+        h4 {
+            display: inline;
+        }
     </style>
 
 </head>
@@ -51,10 +82,44 @@
     </header>
 
 
-    <div id="mealDetail w-100"
+
+
+    <div class="w-100 d-flex justify-content-center mb-3">
+        <button type="button"
+            class="modalbutton btn btn-primary d-flex flex-row align-items-center  justify-content-center"
+            data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+            <h5 class="modalclickbutton m-0 me-3">Favorites</h5>
+            <i style="color: red; " class="fa-solid ok fa-heart"></i>
+        </button>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content bg-black">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Your Favorites</h1>
+                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body bodyofmodal w-100 m-0 d-flex flex-wrap d-flex justify-content-evenly">
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="mealDetail w-100 "
         class="meal-detail-container d-flex flex-column justify-content-center align-items-center">
 
-        <div class="d-flex add-this justify-content-center w-75 bg-body-secondary align-items-center flex-column">
+        <div class="d-flex add-this justify-content-center mb-5  w-75 bg-body-secondary align-items-center flex-column">
 
 
 
@@ -62,31 +127,218 @@
 
         <script>
 
+
+            let imageData2 = JSON.parse(localStorage.getItem("favoritedata")) || [];
             const mealdata = (JSON.parse(localStorage.getItem("mealdata")));
-            console.log(mealdata)
+
+            const check = imageData2.find((e) => e.clickedimage == mealdata.image)
+            console.log(check)
+
+            let one;
+            if (!check) {
+                one = "fa-regular"
+
+            }
+            else {
+                one = "fa-solid"
+
+            }
 
 
-            const newdata = ` <div class="d-flex justify-content-center  align-items-center">
+            const newdata = ` <div class="d-flex justify-content-end me-5 mt-3 w-100">
+                <i class="iconicon ${one} fa-heart heartss2"></i>
+                
+                </div>
+        
+                 <div class="d-flex justify-content-center  align-items-center">
                 <img class="mt-3" style="border-radius: 10px;" height="250px" width="250px" src="${mealdata.image}" alt="">
             </div>
-            <div class=" w-75 mt-3">
-                <h5>Recipe Name: <span>${mealdata.name}</span></h5>
+            <div class=" w-75 mt-3 d-flex flex-row justify-content-start  align-items-center">
+                 <h4 style=color:"black";>Recepi Name:</h4><h5>${mealdata.name}</h5>
             </div>
             <div class="w-75 mt-3">
-                <h5>
+                <h4>
                     Ingredients :  <span>${mealdata.ingredients}</span>
-                </h5>
+                </h4>
             </div>
 
-            <div class="w-75 mt-3">
-                <h5>
+            <div class="w-75 mt-3 mb-5">
+                <h4 ">
                     Instructions :  <span>${mealdata.instructions}</span>
-                </h5>
+                </h4>
             </div>`
 
             document.querySelector(".add-this").innerHTML = newdata
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+            const modalElement = document.querySelector(".modal-body");
+
+
+            function renderFavourte(imageData) {
+
+                modalElement.innerHTML = "";
+
+                imageData.forEach((e) => {
+                    const addmodalelement = `  <div class="modalelement mb-3 ">
+                                    <div class="d-flex justify-content-end m-0  align-items-center"><i
+                                            class="fa-solid fa-heart heartss2"></i>
+                                    </div>
+                                    <div class="d-flex justify-content-center align-items-center"><img
+                                            src="${e.clickedimage}" alt=""></div>
+                                    <div class="w-100">
+                                        <h5 class="modalcolorh4 mt-3 text-center">${e.name}</h5>
+                                    </div>
+                                    </div>`;
+
+                    modalElement.insertAdjacentHTML("beforeend", addmodalelement);
+                });
+
+
+
+
+
+                const hearts2 = document.querySelectorAll(".modalelement .heartss2");
+
+
+                hearts2.forEach((heart) => {
+
+                    console.log(heart)
+                    heart.addEventListener("click", (e) => {
+                        heart2(heart, e);
+                    });
+                });
+
+                const children2 = document.querySelector(".modal-body").childElementCount;
+
+                if (children2 == 0) {
+                    modalElement.innerHTML = `<p class="text-white">No Items Availble</p>`;
+                }
+            }
+
+
+            let imageData = JSON.parse(localStorage.getItem("favoritedata")) || [];
+            renderFavourte(imageData);
+
+
+
+
+
+
+            function heart2(heart, e) {
+                const closestElement = e.target.closest(".modalelement");
+
+                if (heart.classList.contains("fa-regular")) {
+
+
+
+
+                    heart.classList.replace("fa-regular", "fa-solid");
+
+                    addtofavorites(closestElement);
+
+                    let imageData = JSON.parse(localStorage.getItem("favoritedata")) || [];
+
+                    renderFavourte(imageData);
+                } else {
+                    heart.classList.replace("fa-solid", "fa-regular");
+
+                    document.querySelector(".iconicon").classList.replace("fa-solid", "fa-regular")
+
+
+
+                    addtofavorites(closestElement);
+
+                    let imageData = JSON.parse(localStorage.getItem("favoritedata")) || [];
+
+                    renderFavourte(imageData);
+
+                }
+            }
+
+
+            function addtofavorites(element) {
+
+                let imageData = JSON.parse(localStorage.getItem("favoritedata")) || [];
+
+                const existingIndex = imageData.findIndex(
+                    (item) => item.clickedimage == element.querySelector("img").src
+                );
+
+                if (existingIndex == -1) {
+                    imageData.push({
+                        clickedimage: element.querySelector("img").src,
+                        name: element.querySelector("h5").textContent,
+                    });
+                } else {
+                    imageData.splice(existingIndex, 1);
+                }
+
+                localStorage.setItem("favoritedata", JSON.stringify(imageData));
+            }
+
+
+
+
+
+            const icon = document.querySelector(".iconicon")
+
+            icon.addEventListener("click", (e) => {
+
+                if (icon.classList.contains("fa-regular")) {
+
+
+                    const closestElement = e.target.closest(".add-this");
+                    console.log(closestElement)
+
+
+                    addtofavorites(closestElement);
+
+                    let imageData = JSON.parse(localStorage.getItem("favoritedata")) || [];
+
+                    renderFavourte(imageData);
+
+
+
+                    icon.classList.replace("fa-regular", "fa-solid")
+
+                }
+                else {
+                    icon.classList.replace("fa-solid", "fa-regular")
+
+
+                    const closestElement = e.target.closest(".add-this");
+                    console.log(closestElement)
+
+
+                    addtofavorites(closestElement);
+
+                    let imageData = JSON.parse(localStorage.getItem("favoritedata")) || [];
+
+                    renderFavourte(imageData);
+
+
+                }
+            })
+
+
+
+            // window.addEventListener('pageshow', function(event) {
+            //   if (event.persisted) {
+            //     this.location.reload()
+            //   }
+            // });
 
 
 

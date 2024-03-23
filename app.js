@@ -32,7 +32,7 @@ function renderFavourte(imageData) {
   const children2 = document.querySelector(".modal-body").childElementCount;
 
   if (children2 == 0) {
-    modalElement.innerHTML = `<p>No Items Availble</p>`;
+    modalElement.innerHTML = `<p class="text-white">No Items Availble</p>`;
   }
 }
 
@@ -41,6 +41,8 @@ renderFavourte(imageData);
 async function fetchData(url) {
   try {
     urlname = url;
+
+    console.log(url);
     const response = await fetch(url);
 
     const data = await response.json();
@@ -53,11 +55,15 @@ async function fetchData(url) {
   }
 }
 
-fetchData(
-  `https://www.themealdb.com/api/json/v1/1/search.php?s=${
-    document.querySelector("#search-input").value
-  }`
-);
+document.querySelector("#search-input").value = " ";
+
+if (document.querySelector("#search-input").value.trim().length > 0) {
+  fetchData(
+    `https://www.themealdb.com/api/json/v1/1/search.php?s=${
+      document.querySelector("#search-input").value
+    }`
+  );
+}
 
 document.querySelector("#search-input").addEventListener("input", (e) => {
   if (e.target.value != "") {
@@ -119,6 +125,11 @@ function Mealsdata(apidata) {
     e.addEventListener("click", (event) => {
       event.preventDefault();
 
+      const alreadyadded = event.target.parentElement
+        .closest(".modalelement")
+        .querySelector("i")
+        .classList.contains("fa-solid");
+
       const id = event.target.closest("a").id;
       const finddetails = apidata.find((e) => e.idMeal == id);
 
@@ -149,6 +160,7 @@ function Mealsdata(apidata) {
         ],
         image: finddetails.strMealThumb,
         category: finddetails.strCategory,
+        added: alreadyadded,
       };
 
       localStorage.setItem("mealdata", JSON.stringify(senddata));
@@ -216,5 +228,3 @@ function heart2(heart, e) {
     fetchData(urlname);
   }
 }
-
-// localStorage.removeItem("favoritedata");
