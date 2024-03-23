@@ -1,29 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meal Search App - README</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-        }
-        h1 {
-            text-align: center;
-        }
-        h2 {
-            margin-top: 30px;
-        }
-        ul {
-            list-style-type: square;
-            margin-left: 20px;
-        }
-    </style>
-</head>
-<body>
-
     <h1>Meal Search App</h1>
 
     <p>Welcome to the Meal Search App! This web application allows you to search for meals using an API, view meal details, add meals to favorites, remove meals from favorites, and view ingredients and cooking instructions.</p>
@@ -99,6 +73,3 @@
 
     <h2>License</h2>
     <p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
-
-</body>
-</html>
